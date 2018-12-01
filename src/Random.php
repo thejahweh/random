@@ -21,6 +21,18 @@ class Random
     const CHARS_YOUTUBE = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_-';
     const BYTE_CHOICES = 256;
     const E_CHAR_OVERFLOW = 267;
+    /** @var callable */
+    private $randomBytesFunction;
+
+    public function __construct(callable $randomBytesFunction = null)
+    {
+        $this->randomBytesFunction = $randomBytesFunction ?? 'random_bytes';
+    }
+
+    private function bytes(int $length): string
+    {
+        return ($this->randomBytesFunction)($length);
+    }
 
     /**
      * Generates a random string
@@ -30,7 +42,7 @@ class Random
      * @return string
      * @throws \Exception
      */
-    public static function string(int $length = 6, $chars = self::CHARS_DEFAULT): string
+    public function string(int $length = 6, $chars = self::CHARS_DEFAULT): string
     {
         // For the UTF-8 support
         if (is_string($chars)) {
@@ -45,7 +57,7 @@ class Random
                 static::E_CHAR_OVERFLOW);
         }
         $charPerByte = static::BYTE_CHOICES / $charCount;
-        $bytes = random_bytes($length);
+        $bytes = $this->bytes($length);
         $string = '';
         for ($i = 0; $i < $length; $i++) {
             // In order to prevent a character being required which is above the range,
@@ -64,9 +76,9 @@ class Random
      * @see http://stackoverflow.com/a/27371037
      * @throws \Exception
      */
-    public static function hex(int $length): string
+    public function hex(int $length): string
     {
-        return bin2hex(random_bytes($length / 2));
+        return bin2hex($this->bytes($length / 2));
     }
 
     /**
@@ -78,15 +90,15 @@ class Random
      * @todo Use PHP7 random_number for noZeroFirst
      * @throws \Exception
      */
-    public static function number(int $length = 8, bool $noZeroFirst = true): string
+    public function number(int $length = 8, bool $noZeroFirst = true): string
     {
         $number = '';
         if ($noZeroFirst) {
-            $number .= static::string(1, static::CHARS_NN);
+            $number .= $this->string(1, static::CHARS_NN);
             $length--;
         }
         if ($length > 0) {
-            $number .= static::string($length, static::CHARS_N);
+            $number .= $this->string($length, static::CHARS_N);
         }
         return $number;
     }
@@ -100,7 +112,7 @@ class Random
      * @todo Reworking and simplification of the function.
      * @throws \Exception
      */
-    public static function password(int $length = 8, array $blocks): string
+    public function password(int $length = 8, array $blocks): string
     {
         $passwordArray = [];
         $remaining = $length;
@@ -113,7 +125,7 @@ class Random
             $blockLen = (($i + 1) < $blockCount ? mt_rand($min, $max) : $remaining); // The last block fills up
             if ($blockLen > 0) {
                 $remaining -= $blockLen;
-                $blockStr = static::string($blockLen, $chars);
+                $blockStr = $this->string($blockLen, $chars);
                 if ($stick) { // Sticky blocks stay together
                     $passwordArray[] = $blockStr;
                 } else { // For non-sticky blocks, each character is stored individually in the array
