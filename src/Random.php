@@ -10,16 +10,27 @@ namespace jahweh\random;
  */
 class Random
 {
-    public const CHARS_DEFAULT = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    /** @var string Default chars(62) alphanumeric */
+    public const CHARS_DEFAULT = self::CHARS_AN;
+    /** @var string Chars(62) alphanumeric */
     public const CHARS_AN = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-    public const CHARS_A = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    /** @var string Chars(52) alphabet lowercase and uppercase */
+    public const CHARS_ALU = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    /** @var string Chars(26) alphabet uppercase */
     public const CHARS_AU = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    /** @var string Chars(26) alphabet lowercase */
     public const CHARS_AL = 'abcdefghijklmnopqrstuvwxyz';
+    /** @var string Chars(10) numbers */
     public const CHARS_N = '0123456789';
+    /** @var string Chars(9) numbers without zero */
     public const CHARS_NN = '123456789';
+    /** @var string Chars(16) hexadecimal */
     public const CHARS_HEX = 'abcdef0123456789';
+    /** @var string Chars(64) used in youtube ids */
     public const CHARS_YOUTUBE = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_-';
+    /** @var int Possibilities for one byte */
     public const BYTE_CHOICES = 256;
+    /** @var int Exception code for too many defined chars */
     public const E_CHAR_OVERFLOW = 267;
     /** @var callable */
     private $randomBytesFunction;
