@@ -31,7 +31,7 @@ class Random
      * @return string
      * @throws \Exception
      */
-    public static function string($length = 6, $chars = self::CHARS_DEFAULT)
+    public static function string(int $length = 6, $chars = self::CHARS_DEFAULT): string
     {
         // For the UTF-8 support
         if (is_string($chars)) {
@@ -63,8 +63,9 @@ class Random
      * @param int $length The length of the string to be generated.
      * @return string
      * @see http://stackoverflow.com/a/27371037
+     * @throws \Exception
      */
-    public static function hex($length)
+    public static function hex(int $length): string
     {
         return bin2hex(static::bytes($length / 2));
     }
@@ -75,10 +76,10 @@ class Random
      * Returns RandomBytes or raises an exception if no function exists for this purpose.
      *
      * @param int $length
-     * @return string|false
+     * @return string
      * @throws \Exception
      */
-    public static function bytes($length)
+    public static function bytes(int $length): string
     {
         if (function_exists('random_bytes')) {
             return random_bytes($length);
@@ -101,8 +102,9 @@ class Random
      * @param bool $noZeroFirst The first number must not be zero
      * @return string The generated number as a string
      * @todo Use PHP7 random_number for noZeroFirst
+     * @throws \Exception
      */
-    public static function number($length = 8, $noZeroFirst = true)
+    public static function number(int $length = 8, bool $noZeroFirst = true): string
     {
         $number = '';
         if ($noZeroFirst) {
@@ -122,8 +124,9 @@ class Random
      * @param array $blocks [chars,from,to,stick]
      * @return string
      * @todo Reworking and simplification of the function.
+     * @throws \Exception
      */
-    public static function password($length = 8, $blocks)
+    public static function password(int $length = 8, array $blocks): string
     {
         $passwordArray = [];
         $remaining = $length;
