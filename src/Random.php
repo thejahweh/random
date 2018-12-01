@@ -98,7 +98,6 @@ class Random
      * @param int $length The length of the number to be generated
      * @param bool $noZeroFirst The first number must not be zero
      * @return string The generated number as a string
-     * @todo Use PHP7 random_number for noZeroFirst
      * @throws \Exception
      */
     public function number(int $length = 8, bool $noZeroFirst = true): string
