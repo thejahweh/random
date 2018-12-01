@@ -35,7 +35,7 @@ class Random
         // For the UTF-8 support
         if (is_string($chars)) {
             $charCount = mb_strlen($chars, 'UTF-8');
-            $chars = preg_split('//u', $chars, null, PREG_SPLIT_NO_EMPTY);
+            $chars = preg_split('//u', $chars, -1, PREG_SPLIT_NO_EMPTY);
         } else { // Array
             $charCount = count($chars);
         }
