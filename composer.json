@@ -9,6 +9,11 @@
             "email": "info@jahweh.ch"
         }
     ],
+    "config": {
+        "platform": {
+            "php": "7.1.0"
+        }
+    },
     "autoload": {
         "psr-4": {
             "Jahweh\\Random": "src"
