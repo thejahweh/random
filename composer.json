@@ -1,6 +1,7 @@
 {
     "name": "jahweh/random",
     "description": "Helper to create random strings",
+    "type": "library",
     "minimum-stability": "stable",
     "license": "MIT",
     "authors": [
