@@ -10,17 +10,17 @@ namespace jahweh\random;
  */
 class Random
 {
-    const CHARS_DEFAULT = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-    const CHARS_AN = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-    const CHARS_A = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    const CHARS_AU = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    const CHARS_AL = 'abcdefghijklmnopqrstuvwxyz';
-    const CHARS_N = '0123456789';
-    const CHARS_NN = '123456789';
-    const CHARS_HEX = 'abcdef0123456789';
-    const CHARS_YOUTUBE = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_-';
-    const BYTE_CHOICES = 256;
-    const E_CHAR_OVERFLOW = 267;
+    public const CHARS_DEFAULT = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    public const CHARS_AN = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    public const CHARS_A = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    public const CHARS_AU = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    public const CHARS_AL = 'abcdefghijklmnopqrstuvwxyz';
+    public const CHARS_N = '0123456789';
+    public const CHARS_NN = '123456789';
+    public const CHARS_HEX = 'abcdef0123456789';
+    public const CHARS_YOUTUBE = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_-';
+    public const BYTE_CHOICES = 256;
+    public const E_CHAR_OVERFLOW = 267;
     /** @var callable */
     private $randomBytesFunction;
 
