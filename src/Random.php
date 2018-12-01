@@ -19,8 +19,7 @@ class Random
     const CHARS_NN = '123456789';
     const CHARS_HEX = 'abcdef0123456789';
     const CHARS_YOUTUBE = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_-';
-    /** @var int The "ord()" function is limited to 256 values from 0-255. */
-    const ORD_COUNT = 256;
+    const BYTE_CHOICES = 256;
     const E_CHAR_OVERFLOW = 267;
 
     /**
@@ -41,18 +40,18 @@ class Random
             $charCount = count($chars);
         }
         // More than 256 chars are not supported
-        if ($charCount > static::ORD_COUNT) {
-            throw new \Exception('More than ' . static::ORD_COUNT . ' chars are not supported.',
+        if ($charCount > static::BYTE_CHOICES) {
+            throw new \Exception('More than ' . static::BYTE_CHOICES . ' chars are not supported.',
                 static::E_CHAR_OVERFLOW);
         }
-        $charPerPseudo = static::ORD_COUNT / $charCount;
+        $charPerByte = static::BYTE_CHOICES / $charCount;
+        $bytes = random_bytes($length);
         $string = '';
-        $pseudos = random_bytes($length);
         for ($i = 0; $i < $length; $i++) {
             // In order to prevent a character being required which is above the range,
-            // the ratio "charPerPseudo" is included here.
-            $ord = (int)floor(ord($pseudos[$i]) / $charPerPseudo);
-            $string .= $chars[$ord];
+            // the ratio "charPerByte" is included here.
+            $key = (int)floor(ord($bytes[$i]) / $charPerByte);
+            $string .= $chars[$key];
         }
         return $string;
     }
