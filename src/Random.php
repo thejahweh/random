@@ -47,7 +47,7 @@ class Random
         }
         $charPerPseudo = static::ORD_COUNT / $charCount;
         $string = '';
-        $pseudos = static::bytes($length);
+        $pseudos = random_bytes($length);
         for ($i = 0; $i < $length; $i++) {
             // In order to prevent a character being required which is above the range,
             // the ratio "charPerPseudo" is included here.
@@ -67,32 +67,7 @@ class Random
      */
     public static function hex(int $length): string
     {
-        return bin2hex(static::bytes($length / 2));
-    }
-
-    const E_NO_RANDOM_F_FOUND = 385;
-
-    /**
-     * Returns RandomBytes or raises an exception if no function exists for this purpose.
-     *
-     * @param int $length
-     * @return string
-     * @throws \Exception
-     */
-    public static function bytes(int $length): string
-    {
-        if (function_exists('random_bytes')) {
-            return random_bytes($length);
-        } elseif (function_exists('openssl_random_pseudo_bytes')) {
-            return openssl_random_pseudo_bytes($length);
-        } elseif (function_exists('mt_rand')) { // Fallback
-            $bytes = str_repeat(' ', $length);
-            for ($i = 0; $i < $length; $i++) {
-                $bytes[$i] = chr(mt_rand(0, static::ORD_COUNT));
-            }
-            return $bytes;
-        }
-        throw new \Exception('No random function found.', static::E_NO_RANDOM_F_FOUND);
+        return bin2hex(random_bytes($length / 2));
     }
 
     /**
