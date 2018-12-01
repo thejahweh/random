@@ -94,7 +94,7 @@ class Random
     {
         $number = '';
         if ($noZeroFirst) {
-            $number .= $this->string(1, static::CHARS_NN);
+            $number .= random_int(1, 9);
             $length--;
         }
         if ($length > 0) {
