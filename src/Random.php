@@ -122,7 +122,7 @@ class Random
             $min = (isset($blocks[$i][1]) ? $blocks[$i][1] : 0);
             $max = (isset($blocks[$i][2]) ? $blocks[$i][2] : $remaining);
             $stick = (isset($blocks[$i][3]) ? $blocks[$i][3] : false);
-            $blockLen = (($i + 1) < $blockCount ? mt_rand($min, $max) : $remaining); // The last block fills up
+            $blockLen = (($i + 1) < $blockCount ? random_int($min, $max) : $remaining); // The last block fills up
             if ($blockLen > 0) {
                 $remaining -= $blockLen;
                 $blockStr = $this->string($blockLen, $chars);
