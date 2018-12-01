@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace jahweh\random;
+namespace Jahweh\Random;
 
 /**
  * Helper to create random strings.

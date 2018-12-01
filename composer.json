@@ -8,5 +8,10 @@
             "name": "Adrian Liechti",
             "email": "info@jahweh.ch"
         }
-    ]
+    ],
+    "autoload": {
+        "psr-4": {
+            "Jahweh\\Random": "src"
+        }
+    }
 }
