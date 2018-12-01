@@ -1,0 +1,9 @@
+### Composer
+composer.phar
+/vendor/
+### IntelliJ
+.idea
+### Windows
+[Tt]humbs.db
+### macOS
+.DS_Store
