@@ -19,5 +19,9 @@
         "psr-4": {
             "Jahweh\\Random\\": "src"
         }
+    },
+    "require": {
+        "php": "^7.1",
+        "ext-mbstring": "*"
     }
 }
